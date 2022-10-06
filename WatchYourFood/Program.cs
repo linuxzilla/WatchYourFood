@@ -1,4 +1,26 @@
+using Serilog;
+using WatchYourFood.Dao.Core;
+using WatchYourFood.Models.Core;
+using WatchYourFood.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Setup application logging
+
+builder.Host.UseSerilog((context, config) =>
+{
+    config.WriteTo.Console();
+});
+
+// Setup MongoDb instance
+
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection(nameof(MongoDbSettings))
+);
+
+builder.Services.AddSingleton<MongoDbContext>();
+
+builder.Services.AddScoped<IDataServices, DataServices>();
 
 // Add services to the container.
 
@@ -6,8 +28,13 @@ builder.Services.AddControllersWithViews();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerGen(config =>
+{
+    // This pulls the code comments into the Swagger docs.
+    // See: https://github.com/domaindrivendev/Swashbuckle.AspNetCore#include-descriptions-from-xml-comments
+    //string filePath = Path.Combine(System.AppContext.BaseDirectory, "Api.xml");
+    //config.IncludeXmlComments(filePath);
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -31,6 +58,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
