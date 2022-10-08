@@ -1,5 +1,5 @@
 using Serilog;
-using WatchYourFood.Dao.Core;
+using WatchYourFood.DataAccess.Core;
 using WatchYourFood.Models.Core;
 using WatchYourFood.Services;
 

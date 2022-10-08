@@ -1,5 +1,5 @@
-using WatchYourFood.Dao;
-using WatchYourFood.Dao.Core;
+using WatchYourFood.DataAccess;
+using WatchYourFood.DataAccess.Core;
 
 namespace WatchYourFood.Services;
 
@@ -12,5 +12,6 @@ public class DataServices : IDataServices
         this._context = context;
     }
 
-    public TagRepository Tags => new TagRepository(this._context);
+    public TagRepository Tags => new(_context);
+    public ReceiptRepository Recipes => new (_context);
 }

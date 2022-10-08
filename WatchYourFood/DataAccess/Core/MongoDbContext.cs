@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using Serilog;
 using WatchYourFood.Models.Core;
 
-namespace WatchYourFood.Dao.Core;
+namespace WatchYourFood.DataAccess.Core;
 
 public class MongoDbContext
 {
@@ -22,7 +22,6 @@ public class MongoDbContext
 
     public MongoDbContext(string connectionUri, string dbName)
     {
-        Log.Information("Connecting to MongoDB uri: {ValueUri}", connectionUri );
         _client = new MongoClient(connectionUri);
         _database = _client.GetDatabase(dbName);
     }

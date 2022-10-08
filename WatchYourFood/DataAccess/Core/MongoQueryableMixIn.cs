@@ -1,7 +1,7 @@
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace WatchYourFood.Dao.Core;
+namespace WatchYourFood.DataAccess.Core;
 
 public static class MongoQueryableMixIn
 {

@@ -1,6 +1,8 @@
+using WatchYourFood.Models.Core;
+
 namespace WatchYourFood.Models.Recipe;
 
-public interface IReceiptStep
+public class ReceiptStep : MongoDbDocument, IReceiptStep
 {
     public string? Title { get; set; }
     public string? Description { get; set; }

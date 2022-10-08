@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using WatchYourFood.Models.Core;
 
-namespace WatchYourFood.Dao.Core;
+namespace WatchYourFood.DataAccess.Core;
 
 public abstract class RepositoryBase<T> where T : IMongoDbDocument
 {

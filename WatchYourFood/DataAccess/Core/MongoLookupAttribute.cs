@@ -1,4 +1,4 @@
-namespace WatchYourFood.Dao.Core;
+namespace WatchYourFood.DataAccess.Core;
 
 [AttributeUsage(AttributeTargets.Property)]
 public class MongoLookupAttribute : Attribute
