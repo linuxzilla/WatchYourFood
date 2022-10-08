@@ -1,7 +1,22 @@
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using MongoDB.Entities;
+using Serilog;
+using WatchYourFood.Helpers;
+
+// ####### Beginning of Main() #######
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Setup application logging
+builder.Host.UseSerilog((_, config) => { config.WriteTo.Console(); });
 
+// Get default MongoDb configuration
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection(nameof(MongoDbSettings))
+);
+
+// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,7 +40,7 @@ if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-    
+
     app.UseHttpsRedirection();
 }
 
@@ -42,14 +57,30 @@ app.UseEndpoints(endpoints =>
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSpa(spa =>
-    {
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
-    });
+    app.UseSpa(spa => { spa.UseProxyToSpaDevelopmentServer("http://localhost:3000"); });
 }
 else
 {
     app.MapFallbackToFile("index.html");
 }
+
+// Initialize MongoDb instance
+var settings = app.Services.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+
+if (string.IsNullOrEmpty(settings.Username) || string.IsNullOrEmpty(settings.Password))
+{
+    await DB.InitAsync(settings.Database, settings.MongoHost, settings.Port);
+}
+else
+{
+    await DB.InitAsync(settings.Database, new MongoClientSettings()
+    {
+        Server = new MongoServerAddress(settings.MongoHost, settings.Port),
+        Credential =
+            MongoCredential.CreateCredential(settings.Database, settings.Username, settings.Password)
+    });
+}
+
+await DB.MigrateAsync();
 
 app.Run();
