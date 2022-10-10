@@ -85,6 +85,4 @@ else
     });
 }
 
-await DB.MigrateAsync();
-
 app.Run();

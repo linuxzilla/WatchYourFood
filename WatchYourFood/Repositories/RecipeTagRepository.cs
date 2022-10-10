@@ -1,3 +1,4 @@
+using MongoDB.Entities;
 using WatchYourFood.Entities.RecipeTag;
 using WatchYourFood.Repositories.Base;
 
