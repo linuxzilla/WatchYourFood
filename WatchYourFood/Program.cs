@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using MongoDB.Entities;
 using Serilog;
 using WatchYourFood.Helpers;
+using WatchYourFood.Repositories;
 
 // ####### Beginning of Main() #######
 
@@ -15,6 +16,9 @@ builder.Host.UseSerilog((_, config) => { config.WriteTo.Console(); });
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection(nameof(MongoDbSettings))
 );
+
+// Initialize DB repositories as singletons
+builder.Services.AddSingleton(new RecipeTagRepository());
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
