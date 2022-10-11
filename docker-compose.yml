@@ -1,0 +1,16 @@
+---
+version: '3.8'
+services:
+  mongo_db:
+    container_name: watchyourfood_db
+    image: mongo:latest
+    #    environment:
+    #      - MONGO_INITDB_ROOT_USERNAME=watchyourfood
+    #      - MONGO_INITDB_ROOT_PASSWORD=s3cret 
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongodb_data:
