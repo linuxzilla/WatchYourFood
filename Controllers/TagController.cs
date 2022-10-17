@@ -1,15 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
-using WatchYourFood.Entities.RecipeTag;
-using WatchYourFood.Repositories;
+using WatchYourFood.Models.Entities.RecipeTag;
+using WatchYourFood.Repositories.Core;
 
 namespace WatchYourFood.Controllers;
 
 [ApiController]
+[Route("[controller]")]
 public class TagController : ControllerBase
 {
-    private readonly RecipeTagRepository _repository;
+    private readonly IRepository _repository;
 
-    public TagController(RecipeTagRepository repository)
+    public TagController(IRepository repository)
     {
         _repository = repository;
     }
@@ -17,8 +18,7 @@ public class TagController : ControllerBase
     [HttpPost("/api/tag/add", Name = nameof(AddTag))]
     public async Task<RecipeTagEntity> AddTag([FromBody] RecipeTagEntity receiptTag)
     {
-        var result = await _repository.AddEntity(receiptTag);
-        return result;
+        return null;
     }
     
 }

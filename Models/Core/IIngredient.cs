@@ -1,4 +1,4 @@
-namespace WatchYourFood.Entities.Ingredient;
+namespace WatchYourFood.Models.Core;
 
 public interface IIngredient
 {

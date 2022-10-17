@@ -1,4 +1,4 @@
-namespace WatchYourFood.Entities.Base;
+namespace WatchYourFood.Models.Core;
 
 public interface ICreatedBy
 {

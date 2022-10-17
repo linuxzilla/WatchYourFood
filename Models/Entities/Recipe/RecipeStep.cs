@@ -1,4 +1,4 @@
-namespace WatchYourFood.Entities.Recipe;
+namespace WatchYourFood.Models.Entities.Recipe;
 
 public class RecipeStep
 {

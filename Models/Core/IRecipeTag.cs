@@ -1,4 +1,4 @@
-namespace WatchYourFood.Entities.RecipeTag;
+namespace WatchYourFood.Models.Core;
 
 public interface IRecipeTag
 {

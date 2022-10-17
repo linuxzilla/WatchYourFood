@@ -1,6 +1,7 @@
 using MongoDB.Entities;
+using WatchYourFood.Models.Core;
 
-namespace WatchYourFood.Entities.User;
+namespace WatchYourFood.Models.Entities.User;
 
 [Collection("Users")]
 public class UserEntity : Entity, ICreatedOn, IModifiedOn, IUser

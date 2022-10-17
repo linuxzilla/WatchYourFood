@@ -1,8 +1,9 @@
 using MongoDB.Entities;
-using WatchYourFood.Entities.Base;
-using WatchYourFood.Entities.RecipeTag;
+using WatchYourFood.Models.Core;
+using WatchYourFood.Models.Entities.Recipe;
+using WatchYourFood.Models.Entities.RecipeTag;
 
-namespace WatchYourFood.Entities.Recipe;
+namespace WatchYourFood.DataAccess.Entities.Recipe;
 
 [Collection("Recipes")]
 public class RecipeEntity : Entity, ICreatedOn, IModifiedOn, IRecipe, ICreatedBy

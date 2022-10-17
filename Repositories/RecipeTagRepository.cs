@@ -1,10 +1,8 @@
-using MongoDB.Entities;
-using WatchYourFood.Entities.RecipeTag;
-using WatchYourFood.Repositories.Base;
+using WatchYourFood.Repositories.Core;
 
 namespace WatchYourFood.Repositories;
 
-public class RecipeTagRepository : RepositoryBase<RecipeTagEntity>
+public class RecipeRepository : IRepository
 {
     
 }

@@ -1,7 +1,7 @@
 using MongoDB.Entities;
-using WatchYourFood.Entities.Base;
+using WatchYourFood.Models.Core;
 
-namespace WatchYourFood.Entities.Ingredient;
+namespace WatchYourFood.Models.Entities.Ingredient;
 
 [Collection("Ingredients")]
 public class IngredientEntity : Entity, ICreatedOn, IModifiedOn, ICreatedBy, IIngredient

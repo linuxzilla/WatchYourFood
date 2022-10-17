@@ -1,7 +1,8 @@
 using MongoDB.Entities;
-using WatchYourFood.Entities.RecipeTag;
+using WatchYourFood.Models.Entities.Recipe;
+using WatchYourFood.Models.Entities.RecipeTag;
 
-namespace WatchYourFood.Entities.Recipe;
+namespace WatchYourFood.Models.Core;
 
 public interface IRecipe
 {
