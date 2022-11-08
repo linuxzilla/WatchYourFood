@@ -22,5 +22,37 @@ public class RecipeRepository : IRepository
 
         if (isEmailExist)
             throw new EmailAlreadyExistException();
+
+        await user.SaveAsync();
+    }
+
+    public async Task<UserEntity> GetUserEntityByUsername(string username)
+    {
+        var user = await DB.Find<UserEntity>()
+            .Match(x => x.Username == username)
+            .Project(x => new UserEntity
+            {
+                CreatedOn = x.CreatedOn,
+                Email = x.Email,
+                Username = x.Username
+            })
+            .ExecuteSingleAsync();
+
+        return user;
+    }
+
+    public Task<UserEntity> GetUserEntityById(string id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> IsEmailValidationNeeded(string id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task IsEmailValidationNeeded()
+    {
+        throw new NotImplementedException();
     }
 }
