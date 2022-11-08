@@ -12,6 +12,7 @@ public class UserEntity : Entity, ICreatedOn, IModifiedOn, IUser
 
     public string Username { get; set; } = null!;
     public string Email { get; set; } = null!;
+    public string? AboutMe { get; set; }
 
     public string? PasswordHash { get; set; }
     

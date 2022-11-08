@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Entities;
 using Serilog;
+using WatchYourFood.Facades;
 using WatchYourFood.Helpers;
 using WatchYourFood.Repositories;
 using WatchYourFood.Repositories.Core;
@@ -20,6 +21,11 @@ builder.Services.Configure<MongoDbSettings>(
 
 // Initialize DB repositories as singletons
 builder.Services.AddSingleton<IRepository>(new RecipeRepository());
+
+// Dependency injection
+// https://www.dofactory.com/net/facade-design-pattern
+// ToDo: Write static class "Extensions"
+builder.Services.AddScoped<UserAccountFacades>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
